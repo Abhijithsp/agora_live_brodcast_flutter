@@ -4,6 +4,11 @@ Simple Live Broadcasting/Video Streaming
 
 App Contains two users:Broadcaster and Audience
 
+# ScreenShot
+
+https://github.com/Abhijithsp/agora_live_brodcast_flutter/blob/main/assets/screenshots/Screenshot_20220701_142322.png
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -14,7 +19,7 @@ A few resources to get you started if this is your first Flutter project:
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 ## Agora SDK
-- [Create Agora Account and Token for testing](https://console.agora.io)
+- [Create Agora Account and Token for Testing/Live](https://console.agora.io)
 
 ## Packages Used
 
