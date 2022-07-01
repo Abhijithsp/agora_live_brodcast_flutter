@@ -5,7 +5,9 @@ Simple Live Broadcasting/Video Streaming
 App Contains two users:Broadcaster and Audience
 
 # Screenshot
+![Screenshot](https://user-images.githubusercontent.com/22987790/176875960-08db9fd5-b8fb-40f2-83fa-31ada0d388a5.png)
 ![Screenshot](https://user-images.githubusercontent.com/22987790/176870570-af0d5d1f-51d5-4a10-a566-38665748ba5d.png)
+
 
 
 
