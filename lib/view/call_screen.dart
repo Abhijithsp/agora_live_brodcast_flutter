@@ -44,8 +44,9 @@ class _CallScreenState extends State<CallScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Call'),
+        title: const Text('Call',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
         centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: Center(
         child: Stack(
