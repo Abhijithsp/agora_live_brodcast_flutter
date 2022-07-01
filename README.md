@@ -6,7 +6,7 @@ App Contains two users:Broadcaster and Audience
 
 # ScreenShot
 
-https://github.com/Abhijithsp/agora_live_brodcast_flutter/blob/main/assets/screenshots/Screenshot_20220701_142322.png
+![Screenshot](https://user-images.githubusercontent.com/22987790/176870268-54740c68-30dd-46ce-90c4-afa31658c64c.png)
 
 
 ## Getting Started
