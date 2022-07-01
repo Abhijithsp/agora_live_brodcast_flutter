@@ -59,7 +59,7 @@ class _CallScreenState extends State<CallScreen> {
     );
   }
 
-  ///View for Video of Each joined users
+  ///View for Video of Each joined users And Broadcaster
 
   Widget viewVideoScreen() {
     final List<StatefulWidget> list = [];
@@ -77,6 +77,9 @@ class _CallScreenState extends State<CallScreen> {
         children: List.generate(
             videoViews.length, (index) => Expanded(child: videoViews[index])));
   }
+
+
+  ///Button for switch camera,End call and Mute button
 
   Widget buttonsPanelView() {
     if (widget.userRole == ClientRole.Audience) return const SizedBox();
@@ -136,7 +139,7 @@ class _CallScreenState extends State<CallScreen> {
     );
   }
 
-  ///Functions For Agora Engine
+  ///Functions For Agora Engine and check if app_id is present
   Future<void> initializeAppData() async {
     if (APISettings.app_ID.isEmpty) {
       setState(() {
@@ -165,6 +168,9 @@ class _CallScreenState extends State<CallScreen> {
     await rtc_engine.joinChannel(
         APISettings.agoraToken, widget.channelName!, null, 0);
   }
+
+
+  ///Event Handler Function with status of RtcEngine
 
   Future<void> _RtceventHandler() async {
     rtc_engine.setEventHandler(RtcEngineEventHandler(error: (code) {
