@@ -28,40 +28,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Home',style: TextStyle(color: Colors.white),),
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 20,
+              height: 50,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  width: 100.00,
-                  height: 100.00,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          "https://randomuser.me/api/portraits/lego/5.jpg"),
-                      fit: BoxFit.fill,
-                    ),
-                  )),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.broadcast_on_personal,color: Colors.green,size: 100,),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Live Broadcast",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                    color: Colors.black),
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: SizedBox(
-                height: 60,
+                height: 65,
                 width: double.infinity,
                 child: TextFormField(
                   controller: _channelController,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
+                    isDense: true,
+                      prefixIcon: const Icon(Icons.videocam,color:Colors.green,size: 30,),
                       errorText:
                           validateError ? 'Channel name is required' : null,
                       labelText: 'Channel Name',
@@ -73,7 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               height: 20,
             ),
             RadioListTile(
-              title: const Text('Broadcaster'),
+              title: const Text('Broadcaster',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
               value: ClientRole.Broadcaster,
               groupValue: _currentRole,
               onChanged: (ClientRole? value) {
@@ -86,7 +93,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               height: 20,
             ),
             RadioListTile(
-              title: const Text('Audience'),
+              title: const Text('Audience',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
               value: ClientRole.Audience,
               groupValue: _currentRole,
               onChanged: (ClientRole? value) {
@@ -96,15 +103,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               },
             ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             SizedBox(
               height: 50,
               width: 200,
               child: ElevatedButton.icon(
                   label: const Text('Connect',
-                      style: TextStyle(color: Colors.white)),
-                  icon: const Icon(Icons.call),
+                      style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold)),
+                  icon: const Icon(Icons.video_camera_front_outlined,size: 30,),
                   onPressed: () async {
                     joinChannel();
                   }),

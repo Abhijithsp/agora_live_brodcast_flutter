@@ -1,4 +1,5 @@
 import 'package:agroa_videocall/view/dashboard_screen.dart';
+import 'package:agroa_videocall/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const DashboardScreen(),
+      home: const SplashScreen(),
     );
   }
 }
