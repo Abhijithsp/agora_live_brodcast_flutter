@@ -23,7 +23,7 @@ class _CallScreenState extends State<CallScreen> {
   bool mutedStatus = false;
   bool viewPanel = false;
   late RtcEngine rtc_engine;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -44,7 +44,9 @@ class _CallScreenState extends State<CallScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Call',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+        key: _scaffoldKey,
+        title: const Text('Call',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
@@ -63,6 +65,7 @@ class _CallScreenState extends State<CallScreen> {
 
   Widget viewVideoScreen() {
     final List<StatefulWidget> list = [];
+    final videoViews = list;
     if (widget.userRole == ClientRole.Broadcaster) {
       list.add(const RtcLocalView.SurfaceView());
     }
@@ -72,12 +75,11 @@ class _CallScreenState extends State<CallScreen> {
         channelId: widget.channelName!,
       ));
     }
-    final videoViews = list;
+
     return Column(
         children: List.generate(
             videoViews.length, (index) => Expanded(child: videoViews[index])));
   }
-
 
   ///Button for switch camera,End call and Mute button
 
@@ -86,7 +88,7 @@ class _CallScreenState extends State<CallScreen> {
 
     return Container(
       alignment: Alignment.bottomCenter,
-      padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 45),
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 45),
       child: Row(
         children: [
           RawMaterialButton(
@@ -169,31 +171,34 @@ class _CallScreenState extends State<CallScreen> {
         APISettings.agoraToken, widget.channelName!, null, 0);
   }
 
-
   ///Event Handler Function with status of RtcEngine
 
   Future<void> _RtceventHandler() async {
     rtc_engine.setEventHandler(RtcEngineEventHandler(error: (code) {
-      setState(() {
-        _infoStrings.add("Error:$code");
-      });
+      final snackBar = SnackBar(content: Text("Error:$code"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }, joinChannelSuccess: (channel, userid, elapsed) {
+      final snackBar =
+          SnackBar(content: Text("Join Channel:$channel,uid:$userid"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }, leaveChannel: (status) {
+      final snackBar = SnackBar(content: Text("Leave Channel:$status"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       setState(() {
-        _infoStrings.add("Join Channel:$channel,uid:$userid");
-      });
-    }, leaveChannel: (stats) {
-      setState(() {
-        _infoStrings.add("Leave Channel:$stats");
         _usersList.clear();
       });
     }, userJoined: (int userid, int elapsed) {
+      final snackBar = SnackBar(
+          content: Text("User Joined:userid:$userid,elapsed:$elapsed"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       setState(() {
-        _infoStrings.add("User Joined:userid:$userid,elapsed:$elapsed");
         _usersList.add(userid);
       });
     }, userOffline: (int userid, UserOfflineReason reason) {
+      final snackBar =
+          SnackBar(content: Text("User Offline:userid:$userid,reason:$reason"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       setState(() {
-        _infoStrings.add("User Offline:userid:$userid,reason:$reason");
         _usersList.remove(userid);
       });
     }));
