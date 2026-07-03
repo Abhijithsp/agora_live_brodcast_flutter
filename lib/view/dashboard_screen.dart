@@ -6,8 +6,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'call_screen.dart';
-
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
@@ -247,9 +245,12 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
         child: Row(
           children: [
+            // ignore: deprecated_member_use
             Radio<ClientRoleType>(
               value: value,
+              // ignore: deprecated_member_use
               groupValue: _currentRole,
+              // ignore: deprecated_member_use
               onChanged: (v) => setState(() => _currentRole = v!),
               activeColor: colorScheme.primary,
             ),

@@ -231,6 +231,7 @@ void main() {
           .widget<Radio<ClientRoleType>>(find.byWidgetPredicate((w) =>
               w is Radio<ClientRoleType> &&
               w.value == ClientRoleType.clientRoleBroadcaster));
+      // ignore: deprecated_member_use
       expect(broadcasterRadio.groupValue,
           equals(ClientRoleType.clientRoleBroadcaster));
     });
@@ -282,6 +283,7 @@ void main() {
 
       final audienceRadio =
           tester.widget<Radio<ClientRoleType>>(audienceRadioFinder);
+      // ignore: deprecated_member_use
       expect(audienceRadio.groupValue,
           equals(ClientRoleType.clientRoleAudience));
     });
@@ -323,7 +325,7 @@ void main() {
   // -------------------------------------------------------------------------
 
   group('CallScreen UI', () {
-    Widget _buildMockCallUI({
+    Widget buildMockCallUI({
       String channelName = 'test',
     }) {
       return _wrapWithApp(
@@ -370,26 +372,26 @@ void main() {
     }
 
     testWidgets('shows channel name in UI', (WidgetTester tester) async {
-      await tester.pumpWidget(_buildMockCallUI(channelName: 'my_stream'));
+      await tester.pumpWidget(buildMockCallUI(channelName: 'my_stream'));
       await tester.pump();
       expect(find.text('my_stream'), findsOneWidget);
     });
 
     testWidgets('shows LIVE badge', (WidgetTester tester) async {
-      await tester.pumpWidget(_buildMockCallUI());
+      await tester.pumpWidget(buildMockCallUI());
       await tester.pump();
       expect(find.text('LIVE'), findsOneWidget);
     });
 
     testWidgets('shows loading indicator when engine not ready',
         (WidgetTester tester) async {
-      await tester.pumpWidget(_buildMockCallUI());
+      await tester.pumpWidget(buildMockCallUI());
       await tester.pump();
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets('LIVE badge has red background', (WidgetTester tester) async {
-      await tester.pumpWidget(_buildMockCallUI());
+      await tester.pumpWidget(buildMockCallUI());
       await tester.pump();
       final container = tester.widget<Container>(
         find

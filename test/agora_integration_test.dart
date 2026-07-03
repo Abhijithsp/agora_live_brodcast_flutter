@@ -1,19 +1,19 @@
 // ignore_for_file: avoid_print
-/// Agora Integration Tests
-///
-/// These tests verify:
-///  1. AgoraEngineService interface & FakeAgoraEngineService correctness
-///  2. CallScreen initialization sequence (init → role → video/audio → join)
-///  3. CallScreen UI states driven by SDK events
-///  4. Broadcaster controls (mute, camera, switch, end-call)
-///  5. Audience-specific UI (no controls, watching overlay)
-///  6. Error handling (snackbar shown on error event)
-///  7. Channel media options set correctly per role
-///  8. Dispose / cleanup (leaveChannel + release called)
-///  9. Reconnect / re-join flow
-/// 10. Multi-user remote participant list management
-///
-/// None of these tests touch native code or require a real device.
+// Agora Integration Tests
+//
+// These tests verify:
+//  1. AgoraEngineService interface & FakeAgoraEngineService correctness
+//  2. CallScreen initialization sequence (init → role → video/audio → join)
+//  3. CallScreen UI states driven by SDK events
+//  4. Broadcaster controls (mute, camera, switch, end-call)
+//  5. Audience-specific UI (no controls, watching overlay)
+//  6. Error handling (snackbar shown on error event)
+//  7. Channel media options set correctly per role
+//  8. Dispose / cleanup (leaveChannel + release called)
+//  9. Reconnect / re-join flow
+// 10. Multi-user remote participant list management
+//
+// None of these tests touch native code or require a real device.
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agroa_videocall/constants/api_setting.dart';
@@ -374,15 +374,14 @@ void main() {
 
     testWidgets('shows "Waiting for participants" when initialized but no remotes',
         (tester) async {
-      final fake = await _pumpCallScreen(tester);
+      await _pumpCallScreen(tester);
       expect(find.byKey(const Key('waitingView')), findsOneWidget);
       expect(find.text('Waiting for participants...'), findsOneWidget);
       await tester.pump(const Duration(seconds: 5));
     });
 
     testWidgets('shows channel name in AppBar', (tester) async {
-      final fake =
-          await _pumpCallScreen(tester, channelName: 'gaming_channel');
+      await _pumpCallScreen(tester, channelName: 'gaming_channel');
       expect(find.text('gaming_channel'), findsOneWidget);
       await tester.pump(const Duration(seconds: 5));
     });
